@@ -48,3 +48,26 @@ y_knn = [0, 0, 1, 1]
 knn = KNeighborsClassifier(n_neighbors=2)
 knn.fit(X_knn, y_knn)
 print("KNN Prediction for input 1.5:", knn.predict([[1.5]]))
+
+# Challenges of ML
+
+# 1. Insufficient data
+# 2. Non-representative data
+# 3. Poor quality data
+
+import pandas as pd
+
+data = pd.DataFrame({
+    'feature': [1, 2, None, 4],
+    'label': [10, 20, 30, None]
+})
+
+print("Missing data summary:")
+print(data.isnull().sum())
+
+# 4. Irrelevant features
+# Solution: Use domain knowledge or feature selection
+# 5. Overfitting
+# Overfitting example in ch-1-notebook.py
+# 6. Underfitting: Happens when model is too simple, e.g. linear model for non-linear data
+

@@ -71,3 +71,47 @@ print(data.isnull().sum())
 # Overfitting example in ch-1-notebook.py
 # 6. Underfitting: Happens when model is too simple, e.g. linear model for non-linear data
 
+# Exercises
+# 1. Load a dataset and train a model
+from sklearn.datasets import load_diabetes
+from sklearn.linear_model import Ridge
+
+diabetes = load_diabetes()
+X_d, y_d = diabetes.data, diabetes.target
+model = Ridge()
+model.fit(X_d, y_d)
+print("\nRidge model score:", model.score(X_d, y_d))
+
+# 2. Visualize overfitting (done above)
+
+# 3. Handle missing data using SimpleImputer
+from sklearn.impute import SimpleImputer
+
+imputer = SimpleImputer(strategy='mean')
+filled_data = imputer.fit_transform(data)
+print("\nData after imputation:")
+print(pd.DataFrame(filled_data, columns=['feature', 'label']))
+
+# 4. Use train_test_split to evaluate model performance
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X_d, y_d, test_size=0.2, random_state=42)
+model.fit(X_train, y_train)
+print("\nTrain/test split model score:", model.score(X_test, y_test))
+
+# 5. Compare KNeighborsClassifier vs DecisionTreeClassifier on Iris dataset
+from sklearn.metrics import accuracy_score
+
+X_train, X_test, y_train, y_test = train_test_split(X_iris, y_iris, test_size=0.3, random_state=42)
+
+clf_knn = KNeighborsClassifier()
+clf_tree = DecisionTreeClassifier()
+
+clf_knn.fit(X_train, y_train)
+clf_tree.fit(X_train, y_train)
+
+knn_preds = clf_knn.predict(X_test)
+tree_preds = clf_tree.predict(X_test)
+
+print("\nKNN Accuracy:", accuracy_score(y_test, knn_preds))
+print("Decision Tree Accuracy:", accuracy_score(y_test, tree_preds))

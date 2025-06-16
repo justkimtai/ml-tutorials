@@ -35,3 +35,16 @@ X_iris, y_iris = iris.data, iris.target
 clf = DecisionTreeClassifier()
 clf.fit(X_iris, y_iris)
 print("Supervised Learning Predicition (first flower):", clf.predict([X_iris[0]]))
+
+# Batch vs Online (Most scikit-learn models are batch)
+
+# Instance-based vs Model-based
+
+from sklearn.neighbors import KNeighborsClassifier
+
+X_knn = [[0], [1], [2], [3]]
+y_knn = [0, 0, 1, 1]
+
+knn = KNeighborsClassifier(n_neighbors=2)
+knn.fit(X_knn, y_knn)
+print("KNN Prediction for input 1.5:", knn.predict([[1.5]]))

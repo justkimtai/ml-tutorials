@@ -16,3 +16,22 @@ model.fit(X, y)
 # Predict price for a house of 2200 sq feet
 predicted_price = model.predict([[2200]])
 print(f"Predicted price for 2200 sq. feet: {predicted_price[0]:,.2f}")
+
+# Why use ML?
+# Helpful when rules are complex, systems must adapt or automation is needed
+
+# Examples of applications
+# Vision, Speech, Healthcare, Finance, E-Commerce
+
+# Types of ML Systems
+# 1. Supervised 2. Unsupervised
+
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier
+
+iris = load_iris()
+X_iris, y_iris = iris.data, iris.target
+
+clf = DecisionTreeClassifier()
+clf.fit(X_iris, y_iris)
+print("Supervised Learning Predicition (first flower):", clf.predict([X_iris[0]]))
